@@ -110,6 +110,12 @@ $detail  = $koneksi->query("SELECT * FROM detail_transaksi_penjualan WHERE no_no
                             <div class="card shadow mb-4">
                                 <div class="card-header">
                                     Tabel Data Item Obat
+                                    <a href="../nota?id=<?= $data['no_nota'] ?>" target="_blank" class="btn bg-gradient-secondary btn-icon-split float-right ml-2">
+                                        <span class="icon text-white">
+                                            <i class="fas fa-print"></i>
+                                        </span>
+                                        <span class="text text-white">Cetak Nota</span>
+                                    </a>
                                     <button type="button" data-toggle="modal" data-target="#modal-tambah" class="btn bg-gradient-primary btn-icon-split float-right">
                                         <span class="icon text-white">
                                             <i class="fas fa-plus"></i>
@@ -158,8 +164,8 @@ $detail  = $koneksi->query("SELECT * FROM detail_transaksi_penjualan WHERE no_no
                                                                 <span class="text text-white">Hapus</span>
                                                             </button>
                                                         </td>
-                                                    <?php } ?>
                                                     </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>

@@ -94,6 +94,12 @@ include_once '../../config/auth-cek.php';
                                                                 </span>
                                                                 <span class="text text-white">Detail</span>
                                                             </a>
+                                                            <a href="nota?id=<?= $row['no_nota'] ?>" target="_blank" class="btn bg-gradient-secondary btn-sm btn-icon-split">
+                                                                <span class="icon text-white">
+                                                                    <i class="fas fa-print"></i>
+                                                                </span>
+                                                                <span class="text text-white">Cetak Nota</span>
+                                                            </a>
                                                             <!-- <a href="edit?id=<?= $row['no_nota'] ?>" class="btn bg-gradient-success btn-sm btn-icon-split">
                                                                 <span class="icon text-white">
                                                                     <i class="fas fa-edit"></i>
@@ -107,8 +113,8 @@ include_once '../../config/auth-cek.php';
                                                                 <span class="text text-white">Hapus</span>
                                                             </button>
                                                         </td>
-                                                    <?php } ?>
                                                     </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>

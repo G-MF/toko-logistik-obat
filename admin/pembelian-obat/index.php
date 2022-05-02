@@ -72,6 +72,7 @@ include_once '../../config/auth-cek.php';
                                                     <th>Nama Obat</th>
                                                     <th>Harga Pembelian</th>
                                                     <th>Jumlah Obat</th>
+                                                    <th>Total Pembelian</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
@@ -90,6 +91,7 @@ include_once '../../config/auth-cek.php';
                                                         <td align="left"><?= $row['nama_obat']; ?></td>
                                                         <td align="right"><?= number_format($row['harga_pembelian'], 0, ',', '.'); ?></td>
                                                         <td><?= $row['jumlah_obat'] ?></td>
+                                                        <td align="right"><?= number_format(($row['harga_pembelian'] * $row['jumlah_obat']), 0, ',', '.'); ?></td>
                                                         <td>
                                                             <a href="edit?id=<?= $row['no_pembelian_obat'] ?>" class="btn bg-gradient-success btn-sm btn-icon-split">
                                                                 <span class="icon text-white">
@@ -104,8 +106,8 @@ include_once '../../config/auth-cek.php';
                                                                 <span class="text text-white">Hapus</span>
                                                             </button>
                                                         </td>
-                                                    <?php } ?>
                                                     </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>

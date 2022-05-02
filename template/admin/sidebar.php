@@ -59,28 +59,6 @@
         </div>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <!-- <li class="nav-item <?= page_active('kelompok-tanaman') ?>">
-        <a class="nav-link" href="<?= base_url('admin/kelompok-tanaman') ?>">
-            <i class="fas fa-fw fa-layer-group"></i>
-            <span>Kelompok Tanaman</span>
-        </a>
-    </li>
-
-    <li class="nav-item <?= page_active('tanaman-obat') ?>">
-        <a class="nav-link" href="<?= base_url('admin/tanaman-obat') ?>">
-            <i class="fas fa-fw fa-leaf"></i>
-            <span>Tanaman Obat</span>
-        </a>
-    </li>
-
-    <li class="nav-item <?= page_active('obat-tradisional') ?>">
-        <a class="nav-link" href="<?= base_url('admin/obat-tradisional') ?>">
-            <i class="fas fa-fw fa-pills"></i>
-            <span>Obat</span>
-        </a>
-    </li> -->
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -88,11 +66,26 @@
         Laporan
     </div>
 
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-report">
             <i class="fas fa-fw fa-list"></i>
             <span>Laporan</span>
         </a>
+    </li> -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#laporan" aria-expanded="true" aria-controls="laporan">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Laporan</span>
+        </a>
+        <div id="laporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" target="_blank" href="<?= base_url('admin/laporan/karyawan') ?>">Karyawan</a>
+                <a class="collapse-item" target="_blank" href="<?= base_url('admin/laporan/pelanggan') ?>">Pelanggan</a>
+                <a class="collapse-item" target="_blank" href="<?= base_url('admin/laporan/supplier') ?>">Supplier</a>
+                <a class="collapse-item" target="_blank" href="<?= base_url('admin/laporan/stok-obat') ?>">Stok Obat</a>
+                <a class="collapse-item" target="_blank" href="<?= base_url('admin/laporan/pembelian-obat') ?>">Pembelian Obat</a>
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->

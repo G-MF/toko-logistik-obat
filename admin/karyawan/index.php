@@ -91,8 +91,8 @@ include_once '../../config/auth-cek.php'; ?>
                                                                 <span class="text text-white">Hapus</span>
                                                             </button>
                                                         </td>
-                                                    <?php } ?>
                                                     </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
