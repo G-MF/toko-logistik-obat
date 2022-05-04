@@ -21,7 +21,7 @@ if (isset($_POST['tambah'])) {
 
     if ($submit) {
         $_SESSION['alert'] = "Data Berhasil Disimpan";
-        header("location: ../pelanggan", true, 301);
+        echo "<script>window.location.replace('../pelanggan');</script>";
     }
 } else
 
@@ -42,7 +42,7 @@ if (isset($_POST['tambah'])) {
 
         if ($submit) {
             $_SESSION['alert'] = "Data Berhasil Diubah";
-            header("location: ../pelanggan", true, 301);
+            echo "<script>window.location.replace('../pelanggan');</script>";
         }
     } else
 
@@ -52,6 +52,6 @@ if (isset($_POST['tambah'])) {
 
             if ($hapus) {
                 $_SESSION['alert'] = "Data Berhasil Dihapus";
-                header("location: ../pelanggan", true, 301);
+                echo "<script>window.location.replace('../pelanggan');</script>";
             }
         }

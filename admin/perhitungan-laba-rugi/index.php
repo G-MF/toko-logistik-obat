@@ -6,6 +6,12 @@ include_once '../../config/auth-cek.php'; ?>
 
 <?php include_once '../../template/admin/head.php'; ?>
 
+<style>
+    table tr th {
+        vertical-align: middle !important;
+    }
+</style>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -37,7 +43,7 @@ include_once '../../config/auth-cek.php'; ?>
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-900">Data Kelompok Tanaman</h1>
+                        <h1 class="h3 mb-0 text-gray-900">Data Perhitungan Laba Rugi</h1>
                         <a href="tambah" class="btn bg-gradient-primary btn-icon-split">
                             <span class="icon text-white">
                                 <i class="fas fa-plus"></i>
@@ -56,35 +62,47 @@ include_once '../../config/auth-cek.php'; ?>
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead class="thead-light text-center">
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Nama Kelompok Tanaman</th>
+                                                    <th>No. Perhitungan</th>
+                                                    <th>Tanggal Perhitungan</th>
+                                                    <th>Keuntungan Penjualan</th>
+                                                    <th>Total Pembelian</th>
+                                                    <th>Gajih Karyawan</th>
+                                                    <th>Biaya Listrik</th>
+                                                    <th>Biaya PDAM</th>
+                                                    <th>Total Keuntungan Bersih</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $data = $koneksi->query("SELECT * FROM kelompok_tanaman ORDER BY id_kelompok DESC");
+                                                $data = $koneksi->query("SELECT * FROM perhitungan_laba_rugi ORDER BY no_perhitungan DESC");
                                                 foreach ($data as $row) {
                                                 ?>
                                                     <tr>
-                                                        <td align="center"><?= $row['id_kelompok']; ?></td>
-                                                        <td><?= $row['nama']; ?></td>
+                                                        <td><?= $row['no_perhitungan']; ?></td>
+                                                        <td><?= tgl_indo($row['tgl_perhitungan']); ?></td>
+                                                        <td align="right"><?= rupiah($row['keuntungan_penjualan']); ?></td>
+                                                        <td align="right"><?= rupiah($row['total_pembelian']); ?></td>
+                                                        <td align="right"><?= rupiah($row['gajih_karyawan']); ?></td>
+                                                        <td align="right"><?= rupiah($row['biaya_listrik']); ?></td>
+                                                        <td align="right"><?= rupiah($row['biaya_pdam']); ?></td>
+                                                        <td align="right"><?= rupiah($row['total_keuntungan_bersih']); ?></td>
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_kelompok'] ?>" class="btn bg-gradient-success btn-sm btn-icon-split">
+                                                            <a href="edit?id=<?= $row['no_perhitungan'] ?>" class="btn bg-gradient-success btn-sm btn-icon-split">
                                                                 <span class="icon text-white">
                                                                     <i class="fas fa-edit"></i>
                                                                 </span>
                                                                 <span class="text text-white">Edit</span>
                                                             </a>
-                                                            <button type="button" class="btn bg-gradient-danger btn-sm btn-icon-split delete" data-link="proses?id=<?= $row['id_kelompok'] ?>" data-name="<?= $row['nama'] ?>">
+                                                            <button type="button" class="btn bg-gradient-danger btn-sm btn-icon-split delete" data-link="proses?id=<?= $row['no_perhitungan'] ?>" data-name="<?= $row['no_perhitungan'] ?>">
                                                                 <span class="icon text-white">
                                                                     <i class="fas fa-trash"></i>
                                                                 </span>
                                                                 <span class="text text-white">Hapus</span>
                                                             </button>
                                                         </td>
-                                                    <?php } ?>
                                                     </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>

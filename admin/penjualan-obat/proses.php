@@ -18,7 +18,7 @@ if (isset($_POST['tambah'])) {
 
     if ($submit) {
         $_SESSION['alert'] = "Data Berhasil Disimpan";
-        echo "<script>window.location.replace('detail/id?=" . $no_nota . "');</script>";
+        echo "<script>window.location.replace('detail/index?id=" . $no_nota . "');</script>";
     }
 } else
 
