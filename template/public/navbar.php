@@ -1,8 +1,8 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
     <div class="container menu-top">
         <a href="/" class="navbar-brand">
-            <img src="<?= base_url() ?>/assets/img/logo-side-2.png" class="gambar-top">
-            <!-- <span class="brand-text font-weight-bold">Sistem Informasi Pembuatan Obat Tradisional <br> Dinas Kesehatan Kalimantan Selatan</span> -->
+            <img src="<?= base_url() ?>/assets/img/drugstore-icon.png" class="gambar-top" style="width: 65px; height: 65px;">
+            <span class="brand-text font-weight-bold tulisan">Toko Logistik Obat Arif Fajar</span>
         </a>
 
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">

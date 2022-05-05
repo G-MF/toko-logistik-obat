@@ -32,16 +32,17 @@ if (isset($_POST['tambah'])) {
         if (in_array($ext_gambar, $ext_allow) === false) {
             $_SESSION['alert_input'] = "Format Gambar Tidak Diterima!";
             echo "<script>javascript:history.back()</script>";
-        }
+        } else {
 
-        $submit = $koneksi->query("INSERT INTO stok_obat VALUES (
+            $submit = $koneksi->query("INSERT INTO stok_obat VALUES (
             '$kode_obat', '$nama_obat', '$harga_pembelian', '$harga_jual', '$jenis_obat', '$nama_gambar', '$jumlah_stok', '$dosis_obat', '$ket_obat'
         )");
 
-        if ($submit) {
-            move_uploaded_file($tmp_gambar, $dir_gambar . $nama_gambar);
-            $_SESSION['alert'] = "Data Berhasil Disimpan";
-            echo "<script>window.location.replace('../stok');</script>";
+            if ($submit) {
+                move_uploaded_file($tmp_gambar, $dir_gambar . $nama_gambar);
+                $_SESSION['alert'] = "Data Berhasil Disimpan";
+                echo "<script>window.location.replace('../stok');</script>";
+            }
         }
     }
 } else
@@ -61,52 +62,59 @@ if (isset($_POST['tambah'])) {
         $cekgambar   = $koneksi->query("SELECT * FROM stok_obat WHERE kode_obat = '$kode_obat'")->fetch_array();
         $gambar_lama = $cekgambar['gambar_obat'];
 
+        $event = NULL;
+
         $cek = $koneksi->query("SELECT nama_obat FROM stok_obat WHERE kode_obat != '$kode_obat'");
         foreach ($cek as $item) {
             if ($item['nama_obat'] == $nama_obat) {
                 $_SESSION['alert_input'] = "Nama obat sudah ada";
+                $event = 'ada';
                 echo "<script>javascript:history.back()</script>";
+            }
+        }
+
+        if ($event == NULL) {
+
+            if ($_FILES['gambar_obat']['name']) {
+                $gambar      = $_FILES['gambar_obat']['name'];
+                $size_gambar = $_FILES['gambar_obat']['size'];
+                $x_gambar    = explode('.', $gambar);
+                $ext_gambar  = end($x_gambar);
+                $ext_allow   = array('png', 'jpg', 'jpeg');
+                $nama_gambar = $x_gambar[0] . rand(1, 99999) . '.' . $ext_gambar;
+                $tmp_gambar  = $_FILES['gambar_obat']['tmp_name'];
+                $dir_gambar  = '../../assets/gambar-obat/';
+
+                if (in_array($ext_gambar, $ext_allow) === false) {
+                    $_SESSION['alert_input'] = "Format Gambar Tidak Diterima!";
+                    echo "<script>javascript:history.back()</script>";
+                    die;
+                }
             } else {
+                $nama_gambar = $gambar_lama;
+            }
+
+            $submit = $koneksi->query("UPDATE stok_obat SET
+                    nama_obat       = '$nama_obat', 
+                    harga_pembelian = '$harga_pembelian', 
+                    harga_jual      = '$harga_jual', 
+                    gambar_obat     = '$nama_gambar', 
+                    jenis_obat      = '$jenis_obat',
+                    jumlah_stok     = '$jumlah_stok',
+                    dosis_obat      = '$dosis_obat',
+                    ket_obat        = '$ket_obat'
+                    WHERE kode_obat = '$kode_obat'
+                ");
+
+            if ($submit) {
                 if (!empty($_FILES['gambar_obat']['name'])) {
-                    $gambar      = $_FILES['gambar_obat']['name'];
-                    $size_gambar = $_FILES['gambar_obat']['size'];
-                    $x_gambar    = explode('.', $gambar);
-                    $ext_gambar  = end($x_gambar);
-                    $ext_allow   = array('png', 'jpg', 'jpeg');
-                    $nama_gambar = $x_gambar[0] . rand(1, 99999) . '.' . $ext_gambar;
-                    $tmp_gambar  = $_FILES['gambar_obat']['tmp_name'];
-                    $dir_gambar  = '../../assets/gambar-obat/';
-
-                    if (in_array($ext_gambar, $ext_allow) === false) {
-                        $_SESSION['alert_input'] = "Format Gambar Tidak Diterima!";
-                        echo "<script>javascript:history.back()</script>";
+                    move_uploaded_file($tmp_gambar, $dir_gambar . $nama_gambar);
+                    if (file_exists($dir_gambar . $gambar_lama)) {
+                        unlink($dir_gambar . $gambar_lama);
                     }
-                } else {
-                    $nama_gambar = $gambar_lama;
                 }
-
-                $submit = $koneksi->query("UPDATE stok_obat SET
-             nama_obat       = '$nama_obat', 
-             harga_pembelian = '$harga_pembelian', 
-             harga_jual      = '$harga_jual', 
-             gambar_obat     = '$nama_gambar', 
-             jenis_obat      = '$jenis_obat',
-             jumlah_stok     = '$jumlah_stok',
-             dosis_obat      = '$dosis_obat',
-             ket_obat        = '$ket_obat'
-             WHERE kode_obat = '$kode_obat'
-        ");
-
-                if ($submit) {
-                    if (!empty($_FILES['gambar_obat']['name'])) {
-                        move_uploaded_file($tmp_gambar, $dir_gambar . $nama_gambar);
-                        if (file_exists($dir_gambar . $gambar_lama)) {
-                            unlink($dir_gambar . $gambar_lama);
-                        }
-                    }
-                    $_SESSION['alert'] = "Data Berhasil Diubah";
-                    echo "<script>window.location.replace('../stok');</script>";
-                }
+                $_SESSION['alert'] = "Data Berhasil Diubah";
+                echo "<script>window.location.replace('../stok');</script>";
             }
         }
     } else

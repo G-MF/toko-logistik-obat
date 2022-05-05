@@ -3,8 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>SI | Obat Tradisional</title>
-    <link rel="shortcut icon" href="<?= base_url() ?>/assets/img/logo1.png">
+    <title>Toko Logistik Obat</title>
+    <link rel="shortcut icon" href="<?= base_url() ?>/assets/img/drugstore-icon.png">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/public/fontawesome-free/css/all.min.css">
@@ -31,14 +31,19 @@
             }
 
             .gambar-top {
-                margin-top: 5px;
-                height: 50px;
-                width: 300px;
+                margin-top: -8px;
+                margin-left: 5px;
+                height: 50px !important;
+                width: 50px !important;
             }
 
             .login-top {
-                margin-top: -52px;
-                color: #48b461 !important;
+                margin-top: -5px;
+                font-weight: bold !important;
+            }
+
+            .tulisan {
+                overflow-wrap: break-word !important;
             }
         }
     </style>
