@@ -31,6 +31,9 @@
                         <input type="text" class="form-control" name="nama_obat" id="nama_obat" required readonly>
                     </div>
 
+                    <!-- HARGA BELI -->
+                    <input type="hidden" class="form-control" name="harga_pembelian" id="harga_pembelian" readonly>
+
                     <div class="form-group">
                         <label for="harga_jual">Harga Jual</label>
                         <input type="text" class="form-control" name="harga_jual" id="harga_jual" required readonly>

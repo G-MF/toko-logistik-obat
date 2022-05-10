@@ -41,7 +41,7 @@ $detail  = $koneksi->query("SELECT * FROM detail_transaksi_penjualan WHERE no_no
                 <div class="container-fluid">
 
                     <?php
-                    if (isset($_SESSION['alert']) || isset($_SESSION['tipe'])) {
+                    if (isset($_SESSION['alert']) && isset($_SESSION['tipe'])) {
                         echo "<script>toastr." . $_SESSION['tipe'] . "('$_SESSION[alert]')</script>";
                         unset($_SESSION['alert']);
                         unset($_SESSION['tipe']);
@@ -215,6 +215,7 @@ $detail  = $koneksi->query("SELECT * FROM detail_transaksi_penjualan WHERE no_no
                 success: function(response) {
                     var data = JSON.parse(response);
                     $("#nama_obat").val(data.nama_obat);
+                    $("#harga_pembelian").val(data.harga_pembelian);
                     $("#harga_jual").val(data.harga_jual);
                     $("#jenis_obat").val(data.jenis_obat);
                     $("#jumlah_stok").val(data.jumlah_stok);

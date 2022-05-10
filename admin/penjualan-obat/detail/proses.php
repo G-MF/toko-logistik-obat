@@ -20,14 +20,15 @@ function sum_total($no_nota, $koneksi)
 
 // Simpan
 if (isset($_POST['tambah'])) {
-    $no_nota     = strip_tags($_POST['no_nota']);
-    $kode_obat   = strip_tags($_POST['kode_obat']);
-    $nama_obat   = strip_tags($_POST['nama_obat']);
-    $harga_jual  = strip_tags(str_replace(".", "", $_POST['harga_jual']));
-    $jenis_obat  = strip_tags($_POST['jenis_obat']);
-    $jumlah_stok = strip_tags($_POST['jumlah_stok']);
-    $banyak_beli = strip_tags($_POST['banyak_beli']);
-    $sub_total   = strip_tags(str_replace(".", "", $_POST['sub_total']));
+    $no_nota          = strip_tags($_POST['no_nota']);
+    $kode_obat        = strip_tags($_POST['kode_obat']);
+    $nama_obat        = strip_tags($_POST['nama_obat']);
+    $harga_pembelian  = strip_tags(str_replace(".", "", $_POST['harga_pembelian']));
+    $harga_jual       = strip_tags(str_replace(".", "", $_POST['harga_jual']));
+    $jenis_obat       = strip_tags($_POST['jenis_obat']);
+    $jumlah_stok      = strip_tags($_POST['jumlah_stok']);
+    $banyak_beli      = strip_tags($_POST['banyak_beli']);
+    $sub_total        = strip_tags(str_replace(".", "", $_POST['sub_total']));
 
     $cek = $koneksi->query("SELECT kode_obat FROM detail_transaksi_penjualan WHERE no_nota = '$no_nota' AND kode_obat = '$kode_obat'");
     if ($cek->num_rows > 0) {
@@ -44,7 +45,7 @@ if (isset($_POST['tambah'])) {
         } else {
 
             $submit = $koneksi->query("INSERT INTO detail_transaksi_penjualan VALUES (
-            null, '$no_nota', '$kode_obat', '$nama_obat', '$harga_jual', '$jenis_obat', '$banyak_beli', '$sub_total'
+            null, '$no_nota', '$kode_obat', '$nama_obat', '$harga_pembelian', '$harga_jual', '$jenis_obat', '$banyak_beli', '$sub_total'
         )");
 
             if ($submit) {

@@ -80,15 +80,49 @@ if ($_GET['id']) {
 
                                         <div class="form-group row">
                                             <label for="keuntungan_penjualan" class="col-sm-3 col-form-label">Keuntungan Penjualan</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control rupiah" name="keuntungan_penjualan" id="keuntungan_penjualan" required autofocus value="<?= $data['keuntungan_penjualan']; ?>">
+                                            <div class="col-sm">
+                                                <select name="bulan" class="form-control" id="bulan_keuntungan_penjualan" required autofocus>
+                                                    <option value="" disabled selected>-Pilih Bulan-</option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control rupiah" name="keuntungan_penjualan" id="keuntungan_penjualan" required readonly value="<?= $data['keuntungan_penjualan'] ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="total_pembelian" class="col-sm-3 col-form-label">Total Pembelian</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control rupiah" name="total_pembelian" id="total_pembelian" required value="<?= $data['total_pembelian']; ?>">
+                                            <div class="col-sm">
+                                                <select name="bulan" class="form-control" id="bulan_total_pembelian" required autofocus>
+                                                    <option value="" disabled selected>-Pilih Bulan-</option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control rupiah" name="total_pembelian" id="total_pembelian" required readonly value="<?= $data['total_pembelian'] ?>">
                                             </div>
                                         </div>
 
@@ -167,7 +201,7 @@ if ($_GET['id']) {
     <?php include_once '../../template/admin/script.php'; ?>
 
     <script>
-        $("#keuntungan_penjualan, #biaya_pdam").keyup(function() {
+        $("#gajih_karyawan, biaya_listrik, #biaya_pdam").keyup(function() {
             var keuntungan_penjualan = $("#keuntungan_penjualan").val().replaceAll('.', '');
             var total_pembelian = $("#total_pembelian").val().replaceAll('.', '');
             var gajih_karyawan = $("#gajih_karyawan").val().replaceAll('.', '');
