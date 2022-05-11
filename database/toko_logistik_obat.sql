@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 09/05/2022 09:40:49
+ Date: 10/05/2022 12:48:34
 */
 
 SET NAMES utf8mb4;
@@ -43,19 +43,19 @@ CREATE TABLE `detail_transaksi_penjualan`  (
   `no_nota` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `kode_obat` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `nama_obat` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `harga_pembelian` int(11) NULL DEFAULT NULL,
   `harga_jual` int(11) NULL DEFAULT NULL,
   `jenis_obat` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `banyak_beli` int(11) NULL DEFAULT NULL,
   `sub_total` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_detail`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of detail_transaksi_penjualan
 -- ----------------------------
-INSERT INTO `detail_transaksi_penjualan` VALUES (10, 'N-20220428-230009-001', 'Ob001', 'CTM', 3000, 'Tablet', 65, 195000);
-INSERT INTO `detail_transaksi_penjualan` VALUES (11, 'N-20220504-212304-002', 'Ob001', 'CTM', 3000, 'Tablet', 5, 15000);
-INSERT INTO `detail_transaksi_penjualan` VALUES (12, 'N-20220504-212304-002', 'Ob002', 'Paracetamol', 3000, 'Tablet', 5, 15000);
+INSERT INTO `detail_transaksi_penjualan` VALUES (14, 'N-20220510-120446-001', 'Ob001', 'CTM', 2000, 3000, 'Tablet', 65, 195000);
+INSERT INTO `detail_transaksi_penjualan` VALUES (15, 'N-20220510-120446-001', 'Ob002', 'Paracetamol', 1500, 3000, 'Tablet', 10, 30000);
 
 -- ----------------------------
 -- Table structure for karyawan
@@ -113,7 +113,7 @@ CREATE TABLE `pembelian_obat`  (
 -- ----------------------------
 -- Records of pembelian_obat
 -- ----------------------------
-INSERT INTO `pembelian_obat` VALUES ('PO001', '2022-04-21', 'Spl001', 'Pt. Obat Madju', 'Ob001', 'CTM', 2000, 15);
+INSERT INTO `pembelian_obat` VALUES ('PO001', '2022-05-01', 'Spl001', 'Pt. Obat Madju', 'Ob001', 'CTM', 2000, 15);
 
 -- ----------------------------
 -- Table structure for perhitungan_laba_rugi
@@ -134,7 +134,7 @@ CREATE TABLE `perhitungan_laba_rugi`  (
 -- ----------------------------
 -- Records of perhitungan_laba_rugi
 -- ----------------------------
-INSERT INTO `perhitungan_laba_rugi` VALUES ('Pl001', '2022-05-04', 10000000, 500000, 5000000, 500000, 1000000, 3000000);
+INSERT INTO `perhitungan_laba_rugi` VALUES ('Pl001', '2022-05-10', 80000, 30000, 10000, 20000, 10000, 10000);
 
 -- ----------------------------
 -- Table structure for stok_obat
@@ -156,8 +156,8 @@ CREATE TABLE `stok_obat`  (
 -- ----------------------------
 -- Records of stok_obat
 -- ----------------------------
-INSERT INTO `stok_obat` VALUES ('Ob001', 'CTM', 2000, 3000, 'Tablet', '309690230120152.JPG', 95, '3 x sehari', '-');
-INSERT INTO `stok_obat` VALUES ('Ob002', 'Paracetamol', 1500, 3000, 'Tablet', '5045432694.jpg', 95, '3 x sehari', '-');
+INSERT INTO `stok_obat` VALUES ('Ob001', 'CTM', 2000, 3000, 'Tablet', '309690230120152.JPG', 100, '3 x sehari', '-');
+INSERT INTO `stok_obat` VALUES ('Ob002', 'Paracetamol', 1500, 3000, 'Tablet', '5045432694.jpg', 90, '3 x sehari', '-');
 INSERT INTO `stok_obat` VALUES ('Ob003', 'Amoxilin', 1500, 3000, 'Tablet', 'bibit_lidah_buaya___tanaman_aloevera-768x56429870.jpg', 150, '3 x sehari', '-');
 INSERT INTO `stok_obat` VALUES ('Ob004', 'Ampicilin', 1000, 1500, 'Tablet', 'inilah-tanaman-herbal-yang-dapat-meningkatkan-daya-tahan-tubuh80384.jpg', 100, '3 x sehari', '-');
 INSERT INTO `stok_obat` VALUES ('Ob005', 'Bodrex1', 2500, 5000, 'Tablet', '880160319.jpg', 100, '3 x sehari', '-');
@@ -197,7 +197,6 @@ CREATE TABLE `transaksi_penjualan`  (
 -- ----------------------------
 -- Records of transaksi_penjualan
 -- ----------------------------
-INSERT INTO `transaksi_penjualan` VALUES ('N-20220428-230009-001', '2022-04-28', 'Plg001', 'aluh ketuyung', '12345', 'Kayu tangi II', 195000);
-INSERT INTO `transaksi_penjualan` VALUES ('N-20220504-212304-002', '2022-05-04', 'Plg002', 'Anang Warung', '09897656', 'Banjarbaru', 30000);
+INSERT INTO `transaksi_penjualan` VALUES ('N-20220510-120446-001', '2022-05-10', 'Plg002', 'Anang Warung', '09897656', 'Banjarbaru', 225000);
 
 SET FOREIGN_KEY_CHECKS = 1;

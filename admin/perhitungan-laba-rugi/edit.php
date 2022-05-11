@@ -9,6 +9,21 @@ if ($_GET['id']) {
     echo '<meta http-equiv="refresh" content="0; url=../perhitungan-laba-rugi">';
 }
 
+$bulan_indo = [
+    '01' => 'Januari',
+    '02' => 'Februari',
+    '03' => 'Maret',
+    '04' => 'April',
+    '05' => 'Mei',
+    '06' => 'Juni',
+    '07' => 'Juli',
+    '08' => 'Agustus',
+    '09' => 'September',
+    '10' => 'Oktober',
+    '11' => 'November',
+    '12' => 'Desember'
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -73,55 +88,27 @@ if ($_GET['id']) {
 
                                         <div class="form-group row">
                                             <label for="tgl_perhitungan" class="col-sm-3 col-form-label">Tanggal Perhitungan</label>
-                                            <div class="col-sm-9">
-                                                <input type="date" class="form-control" name="tgl_perhitungan" id="tgl_perhitungan" required value="<?= $data['tgl_perhitungan']; ?>">
+                                            <div class="col-sm">
+                                                <input type="date" class="form-control" name="tgl_perhitungan" id="tgl_perhitungan" required readonly value="<?= $data['tgl_perhitungan'] ?>">
+                                            </div>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control" name="bulan" maxlength="4" id="bulan" required readonly value="<?= $bulan_indo[date('m', strtotime($data['tgl_perhitungan']))] ?>">
+                                            </div>
+                                            <div class="col-sm">
+                                                <input type="text" class="form-control" name="tahun" maxlength="4" id="tahun" required readonly value="<?= date('Y', strtotime($data['tgl_perhitungan'])) ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="keuntungan_penjualan" class="col-sm-3 col-form-label">Keuntungan Penjualan</label>
-                                            <div class="col-sm">
-                                                <select name="bulan" class="form-control" id="bulan_keuntungan_penjualan" required autofocus>
-                                                    <option value="" disabled selected>-Pilih Bulan-</option>
-                                                    <option value="01">Januari</option>
-                                                    <option value="02">Februari</option>
-                                                    <option value="03">Maret</option>
-                                                    <option value="04">April</option>
-                                                    <option value="05">Mei</option>
-                                                    <option value="06">Juni</option>
-                                                    <option value="07">Juli</option>
-                                                    <option value="08">Agustus</option>
-                                                    <option value="09">September</option>
-                                                    <option value="10">Oktober</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">Desember</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm">
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control rupiah" name="keuntungan_penjualan" id="keuntungan_penjualan" required readonly value="<?= $data['keuntungan_penjualan'] ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="total_pembelian" class="col-sm-3 col-form-label">Total Pembelian</label>
-                                            <div class="col-sm">
-                                                <select name="bulan" class="form-control" id="bulan_total_pembelian" required autofocus>
-                                                    <option value="" disabled selected>-Pilih Bulan-</option>
-                                                    <option value="01">Januari</option>
-                                                    <option value="02">Februari</option>
-                                                    <option value="03">Maret</option>
-                                                    <option value="04">April</option>
-                                                    <option value="05">Mei</option>
-                                                    <option value="06">Juni</option>
-                                                    <option value="07">Juli</option>
-                                                    <option value="08">Agustus</option>
-                                                    <option value="09">September</option>
-                                                    <option value="10">Oktober</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">Desember</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm">
+                                            <div class="col-sm-9">
                                                 <input type="text" class="form-control rupiah" name="total_pembelian" id="total_pembelian" required readonly value="<?= $data['total_pembelian'] ?>">
                                             </div>
                                         </div>
@@ -201,7 +188,7 @@ if ($_GET['id']) {
     <?php include_once '../../template/admin/script.php'; ?>
 
     <script>
-        $("#gajih_karyawan, biaya_listrik, #biaya_pdam").keyup(function() {
+        $("#gajih_karyawan, #biaya_listrik, #biaya_pdam").keyup(function() {
             var keuntungan_penjualan = $("#keuntungan_penjualan").val().replaceAll('.', '');
             var total_pembelian = $("#total_pembelian").val().replaceAll('.', '');
             var gajih_karyawan = $("#gajih_karyawan").val().replaceAll('.', '');
@@ -215,8 +202,6 @@ if ($_GET['id']) {
             } else {
                 $("#total_keuntungan_bersih").val(0);
             }
-
-
         });
 
         // BERI FORMAT RUPIAH DI TEXT FIELD
@@ -243,6 +228,56 @@ if ($_GET['id']) {
             formatted = output.reverse().join("");
             return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
         };
+
+
+        // TOTAL KEUNTUNGAN PENJUALAN
+        $("#tgl_perhitungan").change(function() {
+            var tgl = $(this).val();
+            var d = new Date(tgl);
+
+            var months = {
+                '01': 'Januari',
+                '02': 'Februari',
+                '03': 'Maret',
+                '04': 'April',
+                '05': 'Mei',
+                '06': 'Juni',
+                '07': 'Juli',
+                '08': 'Agustus',
+                '09': 'September',
+                '10': 'Oktober',
+                '11': 'November',
+                '12': 'Desember'
+            };
+
+            var bulan = d.getMonth() + 1;
+            var tahun = d.getFullYear();
+            var angka = 0;
+
+            if ((bulan >= 1) || (bulan <= 9)) {
+                bulan = '0' + bulan;
+            }
+
+            $("#bulan").val(months[bulan]);
+            $("#tahun").val(tahun);
+
+            $.ajax({
+                url: "ajax-perhitungan.php",
+                type: "post",
+                data: {
+                    bulan: bulan,
+                    tahun: tahun
+                },
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    $("#keuntungan_penjualan").val(data.penjualan);
+                    $("#total_pembelian").val(data.pembelian);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+        });
     </script>
 
 </body>

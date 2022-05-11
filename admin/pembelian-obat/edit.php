@@ -51,7 +51,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-900">Edit Data Pembelian Obat</h1>
-                        <a href="javascript:history.back();" class="btn bg-gradient-secondary btn-icon-split">
+                        <a href="../pembelian-obat/" class="btn bg-gradient-secondary btn-icon-split">
                             <span class="icon text-white">
                                 <i class="fas fa-arrow-left"></i>
                             </span>
@@ -122,7 +122,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                                         <div class="form-group row">
                                             <label for="harga_pembelian" class="col-sm-3 col-form-label">Harga Pembelian</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="harga_pembelian" id="harga_pembelian" required readonly value="<?= $data['harga_pembelian']; ?>">
+                                                <input type="text" class="form-control rupiah" name="harga_pembelian" id="harga_pembelian" required value="<?= $data['harga_pembelian']; ?>">
                                             </div>
                                         </div>
 
@@ -143,7 +143,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                                                 </span>
                                                 <span class="text text-white">Simpan</span>
                                             </button>
-                                            <a href="javascript:history.back();" class="btn bg-gradient-warning btn-icon-split">
+                                            <a href="../pembelian-obat/" class="btn bg-gradient-warning btn-icon-split">
                                                 <span class="icon text-white">
                                                     <i class="fas fa-times"></i>
                                                 </span>
@@ -209,13 +209,38 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                 success: function(response) {
                     var data = JSON.parse(response);
                     $("#nama_obat").val(data.nama_obat);
-                    $("#harga_pembelian").val(format_rupiah(data.harga_pembelian));
+                    // $("#harga_pembelian").val(formatRupiah(data.harga_pembelian));
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);
                 }
             });
         });
+
+        /* Fungsi formatRupiah */
+        var formatRupiah = function(num) {
+            var str = num.toString().replace("", ""),
+                parts = false,
+                output = [],
+                i = 1,
+                formatted = null;
+            if (str.indexOf(".") > 0) {
+                parts = str.split(".");
+                str = parts[0];
+            }
+            str = str.split("").reverse();
+            for (var j = 0, len = str.length; j < len; j++) {
+                if (str[j] != ".") {
+                    output.push(str[j]);
+                    if (i % 3 == 0 && j < (len - 1)) {
+                        output.push(".");
+                    }
+                    i++;
+                }
+            }
+            formatted = output.reverse().join("");
+            return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+        };
     </script>
 
 </body>

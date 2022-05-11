@@ -51,7 +51,7 @@ $detail  = $koneksi->query("SELECT * FROM detail_transaksi_penjualan WHERE no_no
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-900">Data Detail Penjualan Obat</h1>
-                        <a href="javascript:history.back();" class="btn bg-gradient-secondary btn-icon-split">
+                        <a href="../index" class="btn bg-gradient-secondary btn-icon-split">
                             <span class="icon text-white">
                                 <i class="fas fa-arrow-alt-circle-left"></i>
                             </span>
