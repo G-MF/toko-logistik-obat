@@ -252,7 +252,7 @@ $nomor         = $halaman_awal + 1;
                 }
             }
             formatted = output.reverse().join("");
-            return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+            return ("Rp. " + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
         };
     </script>
 

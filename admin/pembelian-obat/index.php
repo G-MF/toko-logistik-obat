@@ -89,9 +89,9 @@ include_once '../../config/auth-cek.php';
                                                         <td align="left"><?= $row['nama_supplier']; ?></td>
                                                         <td><?= $row['kode_obat']; ?></td>
                                                         <td align="left"><?= $row['nama_obat']; ?></td>
-                                                        <td align="right"><?= number_format($row['harga_pembelian'], 0, ',', '.'); ?></td>
+                                                        <td align="right"><?= rupiah($row['harga_pembelian']); ?></td>
                                                         <td><?= $row['jumlah_obat'] ?></td>
-                                                        <td align="right"><?= number_format(($row['harga_pembelian'] * $row['jumlah_obat']), 0, ',', '.'); ?></td>
+                                                        <td align="right"><?= rupiah($row['harga_pembelian'] * $row['jumlah_obat']); ?></td>
                                                         <td>
                                                             <a href="edit?id=<?= $row['no_pembelian_obat'] ?>" class="btn bg-gradient-success btn-sm btn-icon-split">
                                                                 <span class="icon text-white">

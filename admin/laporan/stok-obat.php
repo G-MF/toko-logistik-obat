@@ -86,8 +86,8 @@ include_once '../../config/auth-cek.php';
                     <td><?= $no++; ?></td>
                     <td><?= $row['kode_obat']; ?></td>
                     <td align="left"><?= $row['nama_obat']; ?></td>
-                    <td align="right"><?= number_format($row['harga_pembelian'], 0, ',', '.'); ?></td>
-                    <td align="right"><?= number_format($row['harga_jual'], 0, ',', '.'); ?></td>
+                    <td align="right"><?= rupiah($row['harga_pembelian']); ?></td>
+                    <td align="right"><?= rupiah($row['harga_jual']); ?></td>
                     <td><?= $row['jenis_obat']; ?></td>
                     <td><?= $row['jumlah_stok']; ?></td>
                     <td><?= $row['dosis_obat']; ?></td>
@@ -108,7 +108,7 @@ include_once '../../config/auth-cek.php';
                 Toko Arif Fajar Tabalong
                 <br><br><br><br><br>
 
-                Nama
+                Muhammad Fitri Azhari
             </td>
         </tr>
     </table>

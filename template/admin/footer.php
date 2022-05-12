@@ -1,7 +1,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <u>Dinas Kesehatan Provinsi Kalimantan Selatan</u> <?= date('Y') ?></span>
+            <span>Copyright &copy; <u>TOKO ARIF FAJAR TABALONG</u> 2022</span>
         </div>
     </div>
 </footer>

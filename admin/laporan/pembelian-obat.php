@@ -91,12 +91,23 @@ include_once '../../config/auth-cek.php';
                     <td align="left"><?= $row['nama_supplier']; ?></td>
                     <td><?= $row['kode_obat']; ?></td>
                     <td align="left"><?= $row['nama_obat']; ?></td>
-                    <td align="right"><?= number_format($row['harga_pembelian'], 0, ',', '.'); ?></td>
+                    <td align="right"><?= rupiah($row['harga_pembelian']); ?></td>
                     <td><?= $row['jumlah_obat'] ?></td>
-                    <td align="right"><?= number_format(($row['harga_pembelian'] * $row['jumlah_obat']), 0, ',', '.'); ?></td>
+                    <td align="right"><?= rupiah(($row['harga_pembelian'] * $row['jumlah_obat'])); ?></td>
                 </tr>
             <?php } ?>
         </tbody>
+        <tfoot>
+            <tr align="right">
+                <th colspan="9">Total :</th>
+                <th>
+                    <?php
+                    $total = $koneksi->query("SELECT SUM(jumlah_obat * harga_pembelian) as total FROM pembelian_obat")->fetch_array();
+                    echo rupiah($total['total']);
+                    ?>
+                </th>
+            </tr>
+        </tfoot>
     </table>
 
     <br>
@@ -110,7 +121,7 @@ include_once '../../config/auth-cek.php';
                 Toko Arif Fajar Tabalong
                 <br><br><br><br><br>
 
-                Nama
+                Muhammad Fitri Azhari
             </td>
         </tr>
     </table>

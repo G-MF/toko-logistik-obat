@@ -100,7 +100,7 @@ include_once '../../config/auth-cek.php';
                 Toko Arif Fajar Tabalong
                 <br><br><br><br><br>
 
-                Nama
+                Muhammad Fitri Azhari
             </td>
         </tr>
     </table>

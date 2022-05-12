@@ -86,7 +86,7 @@ include_once '../../config/auth-cek.php';
                                                         <td align="left"><?= $row['nama_pelanggan']; ?></td>
                                                         <td><?= $row['no_hp']; ?></td>
                                                         <td align="left"><?= $row['alamat']; ?></td>
-                                                        <td align="right"><?= number_format($row['total_bayar'], 0, ',', '.'); ?></td>
+                                                        <td align="right"><?= rupiah($row['total_bayar']); ?></td>
                                                         <td>
                                                             <a href="detail/index?id=<?= $row['no_nota'] ?>" class="btn bg-gradient-info btn-sm btn-icon-split">
                                                                 <span class="icon text-white">
