@@ -122,7 +122,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                                         <div class="form-group row">
                                             <label for="harga_pembelian" class="col-sm-3 col-form-label">Harga Pembelian</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control rupiah" name="harga_pembelian" id="harga_pembelian" required value="<?= $data['harga_pembelian']; ?>">
+                                                <input type="text" class="form-control rupiah" name="harga_pembelian" id="harga_pembelian" required readonly value="<?= $data['harga_pembelian']; ?>">
                                             </div>
                                         </div>
 
@@ -209,7 +209,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                 success: function(response) {
                     var data = JSON.parse(response);
                     $("#nama_obat").val(data.nama_obat);
-                    // $("#harga_pembelian").val(formatRupiah(data.harga_pembelian));
+                    $("#harga_pembelian").val(formatRupiah(data.harga_pembelian));
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus, errorThrown);

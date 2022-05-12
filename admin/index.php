@@ -323,7 +323,7 @@ function hitung_data($table, $koneksi)
                     $('#jenis_obat').html(item.jenis_obat);
                     $('#jumlah_stok').html(item.jumlah_stok);
                     $('#dosis_obat').html(item.dosis_obat);
-                    $('#keterangan').html(item.keterangan);
+                    $('#keterangan').html(item.ket_obat);
                     $('.gambar').empty();
                     $('.gambar').append('<img src="<?= base_url() ?>/assets/gambar-obat/' + item.gambar_obat + '" style="width: 70%; height: 70%; text-align: center; justify-content: center; border-radius: 25px;">');
                 });
