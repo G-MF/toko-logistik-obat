@@ -1,8 +1,8 @@
 <?php
 function base_url($url = null)
 {
-    // $base_url = "http://toko-logistik-obat.test";
-    $base_url = "http://localhost/toko-logistik-obat";
+    $base_url = "http://toko-logistik-obat.test";
+    // $base_url = "http://localhost/toko-logistik-obat";
     if ($url != null) {
         return $base_url . "/" . $url;
     } else {

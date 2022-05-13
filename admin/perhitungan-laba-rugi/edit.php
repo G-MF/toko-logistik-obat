@@ -100,7 +100,7 @@ $bulan_indo = [
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="keuntungan_penjualan" class="col-sm-3 col-form-label">Keuntungan Penjualan</label>
+                                            <label for="keuntungan_penjualan" class="col-sm-3 col-form-label">Total Penjualan</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control rupiah" name="keuntungan_penjualan" id="keuntungan_penjualan" required readonly value="<?= $data['keuntungan_penjualan'] ?>">
                                             </div>

@@ -64,7 +64,7 @@ include_once '../../config/auth-cek.php'; ?>
                                                 <tr>
                                                     <th>No. Perhitungan</th>
                                                     <th>Tanggal Perhitungan</th>
-                                                    <th>Keuntungan Penjualan</th>
+                                                    <th>Total Penjualan</th>
                                                     <th>Total Pembelian</th>
                                                     <th>Gajih Karyawan</th>
                                                     <th>Biaya Listrik</th>

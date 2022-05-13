@@ -119,6 +119,15 @@ include_once '../../config/auth-cek.php';
                     <th colspan="6" align="right">Total Bayar</th>
                     <th align="right"><?= rupiah($row['total_bayar']) ?></th>
                 </tr>
+                <tr>
+                    <th colspan="6" align="right">Total Keseluruhan Penjualan</th>
+                    <th align="right">
+                        <?php
+                        $total_semua = $koneksi->query("SELECT SUM(total_bayar) as total FROM transaksi_penjualan")->fetch_array();
+                        echo rupiah($row['total_bayar']);
+                        ?>
+                    </th>
+                </tr>
             <?php } ?>
         </tbody>
     </table>
