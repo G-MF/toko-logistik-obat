@@ -103,7 +103,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <label for="kode_obat" class="col-sm-3 col-form-label">Obat</label>
                                             <div class="col-sm-9">
                                                 <select name="kode_obat" id="kode_obat" class="form-control select2" required data-placeholder="Pilih">
@@ -134,7 +134,7 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
                                             <div class="col-sm-9">
                                                 <input type="number" class="form-control" name="jumlah_obat" id="jumlah_obat" required>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
 
@@ -201,49 +201,49 @@ $obat     = $koneksi->query("SELECT * FROM stok_obat");
             });
         });
 
-        $("#kode_obat").change(function() {
-            var kode = $(this).val();
-            $.ajax({
-                url: "ajax-obat.php",
-                type: "post",
-                data: {
-                    id: kode
-                },
-                success: function(response) {
-                    var data = JSON.parse(response);
-                    $("#nama_obat").val(data.nama_obat);
-                    $("#harga_pembelian").val(formatRupiah(data.harga_pembelian));
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus, errorThrown);
-                }
-            });
-        });
+        // $("#kode_obat").change(function() {
+        //     var kode = $(this).val();
+        //     $.ajax({
+        //         url: "ajax-obat.php",
+        //         type: "post",
+        //         data: {
+        //             id: kode
+        //         },
+        //         success: function(response) {
+        //             var data = JSON.parse(response);
+        //             $("#nama_obat").val(data.nama_obat);
+        //             $("#harga_pembelian").val(formatRupiah(data.harga_pembelian));
+        //         },
+        //         error: function(jqXHR, textStatus, errorThrown) {
+        //             console.log(textStatus, errorThrown);
+        //         }
+        //     });
+        // });
 
-        /* Fungsi formatRupiah */
-        var formatRupiah = function(num) {
-            var str = num.toString().replace("", ""),
-                parts = false,
-                output = [],
-                i = 1,
-                formatted = null;
-            if (str.indexOf(".") > 0) {
-                parts = str.split(".");
-                str = parts[0];
-            }
-            str = str.split("").reverse();
-            for (var j = 0, len = str.length; j < len; j++) {
-                if (str[j] != ".") {
-                    output.push(str[j]);
-                    if (i % 3 == 0 && j < (len - 1)) {
-                        output.push(".");
-                    }
-                    i++;
-                }
-            }
-            formatted = output.reverse().join("");
-            return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
-        };
+        // /* Fungsi formatRupiah */
+        // var formatRupiah = function(num) {
+        //     var str = num.toString().replace("", ""),
+        //         parts = false,
+        //         output = [],
+        //         i = 1,
+        //         formatted = null;
+        //     if (str.indexOf(".") > 0) {
+        //         parts = str.split(".");
+        //         str = parts[0];
+        //     }
+        //     str = str.split("").reverse();
+        //     for (var j = 0, len = str.length; j < len; j++) {
+        //         if (str[j] != ".") {
+        //             output.push(str[j]);
+        //             if (i % 3 == 0 && j < (len - 1)) {
+        //                 output.push(".");
+        //             }
+        //             i++;
+        //         }
+        //     }
+        //     formatted = output.reverse().join("");
+        //     return ("" + formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+        // };
     </script>
 
 </body>

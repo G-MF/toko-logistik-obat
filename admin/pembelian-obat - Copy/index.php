@@ -68,6 +68,10 @@ include_once '../../config/auth-cek.php';
                                                     <th>Tanggal Pembelian</th>
                                                     <th>Kode Supplier</th>
                                                     <th>Nama Supplier</th>
+                                                    <th>Kode Obat</th>
+                                                    <th>Nama Obat</th>
+                                                    <th>Harga Pembelian</th>
+                                                    <th>Jumlah Obat</th>
                                                     <th>Total Pembelian</th>
                                                     <th>Opsi</th>
                                                 </tr>
@@ -83,27 +87,19 @@ include_once '../../config/auth-cek.php';
                                                         <td><?= tgl_indo($row['tanggal_pembelian']); ?></td>
                                                         <td><?= $row['kode_supplier']; ?></td>
                                                         <td align="left"><?= $row['nama_supplier']; ?></td>
-                                                        <td align="right"><?= rupiah($row['total_pembelian']); ?></td>
+                                                        <td><?= $row['kode_obat']; ?></td>
+                                                        <td align="left"><?= $row['nama_obat']; ?></td>
+                                                        <td align="right"><?= rupiah($row['harga_pembelian']); ?></td>
+                                                        <td><?= $row['jumlah_obat'] ?></td>
+                                                        <td align="right"><?= rupiah($row['harga_pembelian'] * $row['jumlah_obat']); ?></td>
                                                         <td>
-                                                            <a href="detail/index?id=<?= $row['no_pembelian_obat'] ?>" class="btn bg-gradient-info btn-sm btn-icon-split">
-                                                                <span class="icon text-white">
-                                                                    <i class="fas fa-info-circle"></i>
-                                                                </span>
-                                                                <span class="text text-white">Detail</span>
-                                                            </a>
-                                                            <a href="nota?id=<?= $row['no_pembelian_obat'] ?>" target="_blank" class="btn bg-gradient-secondary btn-sm btn-icon-split">
-                                                                <span class="icon text-white">
-                                                                    <i class="fas fa-print"></i>
-                                                                </span>
-                                                                <span class="text text-white">Cetak Nota</span>
-                                                            </a>
                                                             <a href="edit?id=<?= $row['no_pembelian_obat'] ?>" class="btn bg-gradient-success btn-sm btn-icon-split">
                                                                 <span class="icon text-white">
                                                                     <i class="fas fa-edit"></i>
                                                                 </span>
                                                                 <span class="text text-white">Edit</span>
                                                             </a>
-                                                            <button type="button" class="btn bg-gradient-danger btn-sm btn-icon-split delete" data-link="proses?id=<?= $row['no_pembelian_obat'] ?>" data-name="<?= $row['no_pembelian_obat'] ?>">
+                                                            <button type="button" class="btn bg-gradient-danger btn-sm btn-icon-split delete" data-link="proses?id=<?= $row['no_pembelian_obat'] ?>" data-name="<?= $row['nama_obat'] ?>">
                                                                 <span class="icon text-white">
                                                                     <i class="fas fa-trash"></i>
                                                                 </span>
