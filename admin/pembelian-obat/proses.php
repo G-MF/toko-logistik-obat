@@ -43,15 +43,16 @@ if (isset($_POST['tambah'])) {
 
         // Hapus
         if (isset($_GET['id'])) {
-            // $cek        = $koneksi->query("SELECT * FROM pembelian_obat WHERE no_pembelian_obat = '$_GET[id]'")->fetch_array();
-            // $updatestok = $koneksi->query("UPDATE stok_obat SET jumlah_stok = jumlah_stok - '$cek[jumlah_obat]' WHERE kode_obat = '$cek[kode_obat]'");
+            $cek        = $koneksi->query("SELECT * FROM detail_pembelian_obat WHERE no_pembelian_obat = '$_GET[id]'");
+            foreach ($cek as $item) {
+                $koneksi->query("UPDATE stok_obat SET jumlah_stok = jumlah_stok - '$item[jumlah]' WHERE kode_obat = '$item[kode_obat]'");
+                $koneksi->query("DELETE FROM detail_pembelian_obat WHERE id_detail = '$item[id_detail]'");
+            }
 
-            // if ($updatestok) {
             $hapus = $koneksi->query("DELETE FROM pembelian_obat WHERE no_pembelian_obat = '$_GET[id]'");
             if ($hapus) {
 
                 $_SESSION['alert'] = "Data Berhasil Dihapus";
                 echo "<script>window.location.replace('../pembelian-obat');</script>";
             }
-            // }
         }

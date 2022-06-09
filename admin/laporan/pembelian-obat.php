@@ -71,11 +71,7 @@ include_once '../../config/auth-cek.php';
                 <th>Tanggal Pembelian</th>
                 <th>Kode Supplier</th>
                 <th>Nama Supplier</th>
-                <th>Kode Obat</th>
-                <th>Nama Obat</th>
-                <th>Harga Pembelian</th>
-                <th>Jumlah Obat</th>
-                <th>Total Pembelian</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -83,27 +79,51 @@ include_once '../../config/auth-cek.php';
             $data = $koneksi->query("SELECT * FROM pembelian_obat ORDER BY no_pembelian_obat DESC");
             foreach ($data as $row) {
             ?>
-                <tr align="center">
-                    <td><?= $no++; ?></td>
-                    <td><?= $row['no_pembelian_obat']; ?></td>
-                    <td><?= tgl_indo($row['tanggal_pembelian']); ?></td>
-                    <td><?= $row['kode_supplier']; ?></td>
-                    <td align="left"><?= $row['nama_supplier']; ?></td>
-                    <td><?= $row['kode_obat']; ?></td>
-                    <td align="left"><?= $row['nama_obat']; ?></td>
-                    <td align="right"><?= rupiah($row['harga_pembelian']); ?></td>
-                    <td><?= $row['jumlah_obat'] ?></td>
-                    <td align="right"><?= rupiah(($row['harga_pembelian'] * $row['jumlah_obat'])); ?></td>
-                </tr>
+            <tr align="center">
+                <td><?= $no++; ?></td>
+                <td><?= $row['no_pembelian_obat']; ?></td>
+                <td><?= tgl_indo($row['tanggal_pembelian']); ?></td>
+                <td><?= $row['kode_supplier']; ?></td>
+                <td align="left"><?= $row['nama_supplier']; ?></td>
+                <td></td>
+            </tr>
+
+            <!-- DETAIL ITEM OBAT -->
+            <tr>
+                <th></th>
+                <th>Kode Obat</th>
+                <th>Nama Obat</th>
+                <th>Harga Pembeliian</th>
+                <th>Jumlah Beli</th>
+                <th>Sub Total</th>
+            </tr>
+
+            <?php
+                $detail = $koneksi->query("SELECT * FROM detail_pembelian_obat WHERE no_pembelian_obat = '$row[no_pembelian_obat]'");
+                foreach ($detail as $item) {
+                ?>
+            <tr align="center">
+                <td></td>
+                <td><?= $item['kode_obat']; ?></td>
+                <td align="left"><?= $item['nama_obat']; ?></td>
+                <td align="right"><?= rupiah($item['harga_pembelian']); ?></td>
+                <td><?= $item['jumlah']; ?></td>
+                <td align="right"><?= rupiah($item['harga_pembelian'] * $item['jumlah']); ?></td>
+            </tr>
+            <?php } ?>
+            <tr>
+                <th colspan="5" align="right">Total Pembelian</th>
+                <th align="right"><?= rupiah($row['total_pembelian']) ?></th>
+            </tr>
             <?php } ?>
         </tbody>
         <tfoot>
-            <tr align="right">
-                <th colspan="9">Total :</th>
-                <th>
+            <tr>
+                <th colspan="5" align="right">Total Keseluruhan Pembelian</th>
+                <th align="right">
                     <?php
-                    $total = $koneksi->query("SELECT SUM(jumlah_obat * harga_pembelian) as total FROM pembelian_obat")->fetch_array();
-                    echo rupiah($total['total']);
+                    $total_semua = $koneksi->query("SELECT SUM(total_pembelian) as total FROM pembelian_obat")->fetch_array();
+                    echo rupiah($total_semua['total']);
                     ?>
                 </th>
             </tr>

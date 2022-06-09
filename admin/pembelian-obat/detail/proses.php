@@ -88,7 +88,7 @@ if (isset($_POST['tambah'])) {
             $jumlah            = $data['jumlah'];
 
             // update jumlah stok
-            $updatestok        = $koneksi->query("UPDATE stok_obat SET jumlah_stok = jumlah_stok + '$jumlah' WHERE kode_obat = '$kode_obat'");
+            $updatestok        = $koneksi->query("UPDATE stok_obat SET jumlah_stok = jumlah_stok - '$jumlah' WHERE kode_obat = '$kode_obat'");
 
             if ($updatestok) {
                 // hapus data

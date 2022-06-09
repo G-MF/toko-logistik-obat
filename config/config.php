@@ -22,6 +22,18 @@ function page_active($page_now)
     }
 }
 
+function page_active_detail($page_now)
+{
+    $url =  $_SERVER['REQUEST_URI'];
+    $ex  = explode('/', $url);
+    $co  = count($ex);
+    $page = $ex[$co - 3];
+
+    if ($page == $page_now) {
+        return 'active';
+    }
+}
+
 function tgl_indo($tanggal)
 {
     $bulan = array(

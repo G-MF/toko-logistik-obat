@@ -46,15 +46,15 @@
     </li>
 
 
-    <li class="nav-item <?= page_active('pembelian-obat') || page_active('penjualan-obat') || page_active('detail') || page_active('perhitungan-laba-rugi') ? 'active' : '' ?>">
+    <li class="nav-item <?= page_active('pembelian-obat') || page_active('penjualan-obat') || page_active_detail('pembelian-obat') || page_active_detail('penjualan-obat') || page_active('perhitungan-laba-rugi') ? 'active' : '' ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksi" aria-expanded="true" aria-controls="transaksi">
             <i class="fas fa-fw fa-balance-scale"></i>
             <span>Transaksi</span>
         </a>
-        <div id="transaksi" class="collapse <?= page_active('pembelian-obat') || page_active('penjualan-obat') || page_active('detail') || page_active('perhitungan-laba-rugi') ? 'show' : '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="transaksi" class="collapse <?= page_active('pembelian-obat') || page_active('penjualan-obat') || page_active_detail('pembelian-obat') || page_active_detail('penjualan-obat') || page_active('perhitungan-laba-rugi') ? 'show' : '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?= page_active('pembelian-obat') ? 'active' : '' ?>" href="<?= base_url('admin/pembelian-obat') ?>">Pembelian Obat</a>
-                <a class="collapse-item <?= page_active('penjualan-obat') || page_active('detail') ? 'active' : '' ?>" href="<?= base_url('admin/penjualan-obat') ?>">Penjualan Obat</a>
+                <a class="collapse-item <?= page_active('pembelian-obat') || page_active_detail('pembelian-obat') ? 'active' : '' ?>" href="<?= base_url('admin/pembelian-obat') ?>">Pembelian Obat</a>
+                <a class="collapse-item <?= page_active('penjualan-obat') || page_active_detail('penjualan-obat') ? 'active' : '' ?>" href="<?= base_url('admin/penjualan-obat') ?>">Penjualan Obat</a>
                 <a class="collapse-item <?= page_active('perhitungan-laba-rugi') ? 'active' : '' ?>" href="<?= base_url('admin/perhitungan-laba-rugi') ?>">Perhitungan Laba Rugi</a>
             </div>
         </div>
