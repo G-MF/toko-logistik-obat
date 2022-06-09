@@ -7,7 +7,7 @@ $tahun = $_POST['tahun'];
 
 $trx_penjualan  = $koneksi->query("SELECT SUM(total_bayar) as total FROM transaksi_penjualan  WHERE MONTH(tanggal_transaksi) = '$bulan' AND YEAR(tanggal_transaksi) = '$tahun'")->fetch_array();
 
-$trx_pembelian  = $koneksi->query("SELECT SUM(harga_pembelian * jumlah_obat) as total FROM pembelian_obat  WHERE MONTH(tanggal_pembelian) = '$bulan' AND YEAR(tanggal_pembelian) = '$tahun'")->fetch_array();
+$trx_pembelian  = $koneksi->query("SELECT SUM(total_pembelian) as total FROM pembelian_obat  WHERE MONTH(tanggal_pembelian) = '$bulan' AND YEAR(tanggal_pembelian) = '$tahun'")->fetch_array();
 
 if ($trx_pembelian) {
     $total_pembelian = number_format($trx_pembelian['total'], 0, ',', '.');

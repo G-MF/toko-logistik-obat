@@ -75,14 +75,40 @@ $kodeotomatis = "Pl" . sprintf('%03s', $nourut);
 
                                         <div class="form-group row">
                                             <label for="tgl_perhitungan" class="col-sm-3 col-form-label">Tanggal Perhitungan</label>
+                                            <div class="col-sm-9">
+                                                <input type="date" class="form-control" name="tgl_perhitungan" id="tgl_perhitungan" value="<?= date('Y-m-d'); ?>" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="tgl_perhitungan" class="col-sm-3 col-form-label">Bulan dan Tahun</label>
                                             <div class="col-sm">
-                                                <input type="date" class="form-control" name="tgl_perhitungan" id="tgl_perhitungan" required>
+                                                <select name="bulan" id="bulan" class="form-control" required>
+                                                    <option value="" disabled selected>--Pilih Bulan--</option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Merk</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                </select>
                                             </div>
                                             <div class="col-sm">
-                                                <input type="text" class="form-control" name="bulan" maxlength="4" id="bulan" required readonly>
+                                                <select name="tahun" id="tahun" class="form-control" required>
+                                                    <option value="" disabled selected>--Pilih Tahun--</option>
+                                                    <?php for ($i = date('Y'); $i >= 2000; $i--) { ?>
+                                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                             <div class="col-sm">
-                                                <input type="text" class="form-control" name="tahun" maxlength="4" id="tahun" required readonly>
+                                                <button type="button" class="btn btn-info btn-block" id="tombol-hitung">Hitung</button>
                                             </div>
                                         </div>
 
@@ -217,36 +243,14 @@ $kodeotomatis = "Pl" . sprintf('%03s', $nourut);
         };
 
 
-        // TOTAL KEUNTUNGAN PENJUALAN
-        $("#tgl_perhitungan").change(function() {
-            var tgl = $(this).val();
-            var d = new Date(tgl);
-
-            var months = {
-                '01': 'Januari',
-                '02': 'Februari',
-                '03': 'Maret',
-                '04': 'April',
-                '05': 'Mei',
-                '06': 'Juni',
-                '07': 'Juli',
-                '08': 'Agustus',
-                '09': 'September',
-                '10': 'Oktober',
-                '11': 'November',
-                '12': 'Desember'
-            };
-
-            var bulan = d.getMonth() + 1;
-            var tahun = d.getFullYear();
-            var angka = 0;
-
-            if ((bulan >= 1) || (bulan <= 9)) {
-                bulan = '0' + bulan;
-            }
-
-            $("#bulan").val(months[bulan]);
-            $("#tahun").val(tahun);
+        // TOTAL KEUNTUNGAN
+        $("#tombol-hitung").click(function() {
+            var bulan = $("#bulan").val();
+            var tahun = $("#tahun").val();
+            $("#gajih_karyawan").val(0);
+            $("#biaya_listrik").val(0);
+            $("#biaya_pdam").val(0);
+            $("#total_keuntungan_bersih").val(0);
 
             $.ajax({
                 url: "ajax-perhitungan.php",

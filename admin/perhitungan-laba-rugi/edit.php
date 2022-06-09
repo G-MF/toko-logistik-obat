@@ -230,36 +230,14 @@ $bulan_indo = [
         };
 
 
-        // TOTAL KEUNTUNGAN PENJUALAN
-        $("#tgl_perhitungan").change(function() {
-            var tgl = $(this).val();
-            var d = new Date(tgl);
-
-            var months = {
-                '01': 'Januari',
-                '02': 'Februari',
-                '03': 'Maret',
-                '04': 'April',
-                '05': 'Mei',
-                '06': 'Juni',
-                '07': 'Juli',
-                '08': 'Agustus',
-                '09': 'September',
-                '10': 'Oktober',
-                '11': 'November',
-                '12': 'Desember'
-            };
-
-            var bulan = d.getMonth() + 1;
-            var tahun = d.getFullYear();
-            var angka = 0;
-
-            if ((bulan >= 1) || (bulan <= 9)) {
-                bulan = '0' + bulan;
-            }
-
-            $("#bulan").val(months[bulan]);
-            $("#tahun").val(tahun);
+        // TOTAL KEUNTUNGAN
+        $("#tombol-hitung").click(function() {
+            var bulan = $("#bulan").val();
+            var tahun = $("#tahun").val();
+            $("#gajih_karyawan").val(0);
+            $("#biaya_listrik").val(0);
+            $("#biaya_pdam").val(0);
+            $("#total_keuntungan_bersih").val(0);
 
             $.ajax({
                 url: "ajax-perhitungan.php",
